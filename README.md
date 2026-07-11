@@ -1,7 +1,5 @@
 # Flight-Booking-Analytics-Platform-Databricks-x-dbt-
 
-# Flight Booking Analytics Platform
-
 An end-to-end Data Engineering project built on Databricks that processes flight booking data using the Medallion Architecture. The project demonstrates incremental data ingestion, scalable ETL pipelines, dimensional modeling, and analytics-ready datasets using PySpark, Delta Lake, Lakeflow Declarative Pipelines, and dbt.
 
 ---
