@@ -1,14 +1,16 @@
 # Flight-Booking-Analytics-Platform-Databricks-x-dbt-
 
-# FMCG Sales Analytics Lakehouse
+# Flight Booking Analytics Platform
 
-An end-to-end Data Engineering project built using Databricks implementing the Medallion Architecture (Bronze, Silver, Gold) with Delta Lake, PySpark, Lakeflow Declarative Pipelines, and dbt.
+An end-to-end Data Engineering project built on Databricks that processes flight booking data using the Medallion Architecture. The project demonstrates incremental data ingestion, scalable ETL pipelines, dimensional modeling, and analytics-ready datasets using PySpark, Delta Lake, Lakeflow Declarative Pipelines, and dbt.
+
+---
 
 ## Overview
 
-This project demonstrates how modern data engineering pipelines are built using Databricks. Raw sales data is incrementally ingested, transformed, validated, and modeled into analytics-ready datasets using scalable ETL pipelines.
+This project simulates a production-grade data engineering workflow for a flight booking system. Raw booking data is ingested into the Bronze layer, transformed and validated in the Silver layer, and modeled into a Star Schema in the Gold layer for reporting and analytics.
 
-The project implements reusable pipelines for data ingestion, dimensional modeling, Slowly Changing Dimensions (SCD Type 1), and dynamic fact table generation.
+The pipeline supports incremental data loading, Slowly Changing Dimensions (SCD Type 1), dynamic fact table generation, and SQL-based transformations with dbt.
 
 ---
 
@@ -18,108 +20,115 @@ The project implements reusable pipelines for data ingestion, dimensional modeli
 - PySpark
 - SQL
 - Delta Lake
-- Lakeflow Declarative Pipelines (DLT)
 - Databricks Auto Loader
+- Lakeflow Declarative Pipelines (DLT)
 - dbt
-- Git
+- AWS S3
+- Git & GitHub
 
 ---
 
 ## Architecture
 
-Landing Data
-
-↓
-
+```
+AWS S3
+   │
+   ▼
 Bronze Layer
-- Incremental ingestion
-- Auto Loader
-- Delta Tables
-
-↓
-
+(Auto Loader)
+   │
+   ▼
 Silver Layer
-- Data Cleaning
-- Validation
-- Transformations
-- DLT Pipelines
-
-↓
-
+(Data Cleaning & Validation)
+   │
+   ▼
 Gold Layer
-- Star Schema
-- Dimension Tables
-- Fact Tables
-- SCD Type 1
-
-↓
-
+(Star Schema)
+   │
+   ▼
 dbt Models
-
-↓
-
-BI Reporting
+   │
+   ▼
+Analytics & Reporting
+```
 
 ---
 
 ## Features
 
-- Incremental file ingestion using Auto Loader
-- Dynamic ETL pipelines
-- Medallion Architecture
-- Delta Lake
-- Slowly Changing Dimension (Type 1)
+- Incremental data ingestion using Databricks Auto Loader
+- Medallion Architecture (Bronze, Silver, Gold)
+- ETL pipelines developed with PySpark
+- Delta Lake for reliable storage
+- Slowly Changing Dimension (SCD Type 1)
 - Dynamic Fact Table Builder
-- Star Schema
-- Data Validation
-- Analytics-ready datasets
+- Star Schema implementation
+- Data quality validation
+- Incremental processing
+- dbt integration for modular SQL transformations
+
+---
+
+## Data Pipeline
+
+### Bronze Layer
+- Ingests raw flight booking files from AWS S3
+- Supports incremental loading
+- Handles schema evolution
+- Stores raw Delta tables
+
+### Silver Layer
+- Cleans and validates booking data
+- Removes duplicate records
+- Standardizes data formats
+- Applies business transformation logic
+
+### Gold Layer
+- Creates dimension tables
+- Creates fact tables
+- Implements SCD Type 1
+- Produces analytics-ready datasets for reporting
 
 ---
 
 ## Project Structure
 
 ```
-setup/
-bronze/
-silver/
-gold/
-parameters/
-scd/
-README.md
+Flight-Booking-Analytics/
+
+├── Setup.py
+├── SrcParameters.py
+├── BronzeLayer.py
+├── dltPipeline.py
+├── GOLD_DIMS.py
+├── GOLD_FACT.py
+├── Initial Load/
+├── Incremental Load/
+├── SCD data load/
+└── README.md
 ```
-
----
-
-## Workflow
-
-1. Configure workspace and parameters
-
-2. Ingest raw data into Bronze layer
-
-3. Clean and transform data into Silver layer
-
-4. Build Dimension tables
-
-5. Build Fact tables
-
-6. Apply SCD Type 1
-
-7. Generate Gold layer
-
-8. Build reporting models using dbt
 
 ---
 
 ## Key Learnings
 
-- Databricks Lakehouse
-- Incremental ETL Pipelines
-- Delta Lake
-- Dynamic PySpark notebooks
-- SCD Type 1
-- Star Schema
-- Data Quality Validation
-- dbt Integration
+- Built scalable ETL pipelines using Databricks and PySpark
+- Implemented incremental data ingestion with Auto Loader
+- Applied Medallion Architecture for data organization
+- Built reusable SCD Type 1 and Fact Table pipelines
+- Performed dimensional modeling using Star Schema
+- Integrated dbt with Databricks for SQL transformations
+- Implemented data quality validation and incremental processing
+
+---
+
+## Future Improvements
+
+- Apache Airflow orchestration
+- CI/CD using GitHub Actions
+- Data observability and monitoring
+- Automated testing
+- Real-time streaming with Kafka
 
 ---
 
